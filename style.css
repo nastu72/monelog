@@ -1,0 +1,519 @@
+body{
+    margin: 0;
+    padding: 0;
+    color: #584E4A;
+    line-height: 150%;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6,p{
+    margin: 0;
+    padding: 0;
+}
+
+/*========================================
+  リンク
+========================================*/
+
+a,
+a:active {
+  color: #ab555a;
+}
+a:hover {
+  text-decoration: none;
+}
+
+/*========================================
+  ヘッダー
+========================================*/
+header {
+    margin-bottom: 30px;
+    width: 100%;
+    height: 80px;
+    background: #4D4D4D;
+    color: #FFFEFE;
+}
+
+  header h1 {
+    float: left;
+    margin: 0;
+    padding-left: 15px;
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Alegreya Sans SC',cursive;
+    line-height: 80px;
+  }
+  
+  header h1 a {
+    color: #f6f5f5;
+    text-decoration: none;
+  }
+
+/*========================================
+  ナビゲーション
+========================================*/  
+  nav a {
+    padding: 10px 15px;
+    color: #4D4D4D;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  nav a:hover {
+    text-decoration: underline;
+  }
+
+  nav ul li{
+    height: 50px;
+    list-style: none;
+  }
+
+  /* ログアウト・ログインのリンク */
+  .logout, .login{
+    padding: 5px 10px;
+    background: #4D4D4D;
+    color: cornsilk;
+    margin-left: 10px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+  }
+
+  .logout:hover, .login:hover{
+    text-decoration: none;
+  }
+
+  .logout:active, .login:active{
+    color: cornsilk;
+  }
+  
+/* ハンバーガーメニュー */
+  #nav-drawer {
+    position: relative;
+    height: 80px;
+    float: right;
+    line-height: 80px;
+  }
+  
+  /*チェックボックス等は非表示に*/
+  .nav-unshown {
+    display:none;
+  }
+  
+  /*アイコンのスペース*/
+  #nav-open {
+    display: inline-block;
+    width: 30px;
+    height: 22px;
+    vertical-align: middle;
+  }
+  
+  /*ハンバーガーアイコンをCSSだけで表現*/
+  #nav-open span, #nav-open span:before, #nav-open span:after {
+    position: absolute;
+    height: 3px;/*線の太さ*/
+    width: 25px;/*長さ*/
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    background: #f6f5f5;
+    display: block;
+    content: '';
+    cursor: pointer;
+  }
+  #nav-open span:before {
+    bottom: -8px;
+  }
+  #nav-open span:after {
+    bottom: -16px;
+  }
+  
+  /*閉じる用の薄黒カバー*/
+  #nav-close {
+    display: none;/*はじめは隠しておく*/
+    position: fixed;
+    z-index: 99;
+    top: 0;/*全体に広がるように*/
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #343a40;
+    opacity: 0;
+    transition: .3s ease-in-out;
+  }
+  
+  /*中身*/
+  #nav-content {
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9999;/*最前面に*/
+    width: 90%;/*右側に隙間を作る（閉じるカバーを表示）*/
+    max-width: 330px;/*最大幅（調整してください）*/
+    height: 100%;
+    background: #BF9597;/*背景色*/
+    transition: .3s ease-in-out;/*滑らかに表示*/
+    -webkit-transform: translateX(105%);
+    transform: translateX(105%);/*右に隠しておく*/
+  }
+  
+  /*チェックが入ったらもろもろ表示*/
+  #nav-input:checked ~ #nav-close {
+    display: block;/*カバーを表示*/
+    opacity: .5;
+  }
+  
+  #nav-input:checked ~ #nav-content {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);/*中身を表示（右へスライド）*/
+    box-shadow: 6px 0 25px rgba(0,0,0,.15);
+  }
+
+
+/*========================================
+  レイアウト
+========================================*/
+
+.site-width {
+    margin: 0 auto;
+    width: 980px;
+  }
+
+#main {
+    float: left;
+    min-height: 600px;
+  }
+
+/* 新規登録ページのレイアウト */
+.page-1colum{
+    background:#d4a5a7;
+}
+.page-1colum #main {
+    width: 100%;
+  }
+
+section h2.site-title {
+    text-align: center;
+    font-family: 'Alegreya Sans SC',cursive;
+    font-size: 80px;
+    line-height: 80px;
+    color: #584E4A;
+    margin-bottom: 20px;
+  }
+
+  #contents {
+    overflow: hidden;
+    margin: 20px auto;
+  }
+
+  /* タイトル共通 */
+  .title{
+    font-size: 30px;
+    text-align: center;
+  }
+
+  /* 収支ページ・マイページのタイトル */
+  .page-title{
+    font-size: 30px;
+    text-align: center;
+    padding-top: 20px;
+    letter-spacing: 0.07em;
+  }
+
+  /* ログインページのタイトル */
+  .login-title{
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+
+/*========================================
+  マイページ
+========================================*/
+/* 合計金額 */
+.money-total{
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  letter-spacing: 0.05em;
+}
+
+/* 円 */
+.yen{
+  font-size: 30px;
+  margin-left: 10px;
+}
+.panel-list{
+  background: #FFFEFE;
+  padding: 15px;
+}
+
+.wallet-area{
+  border-bottom: 1px solid #584E4A;
+}
+
+.wallet-area:hover{
+  background: cornsilk;
+}
+
+
+.panel-body{
+  display: inline-block;
+  padding-left: 0px;
+  margin-top: 15px;
+  list-style-type: none;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.panel-body li{
+  display: inline-block;
+  width: 170px;
+  padding: 10px 0;
+  vertical-align: middle;
+  color: #584E4A;
+}
+
+  /* アイコン */
+  .icon{
+    padding: 2px 10px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: 16px;
+    letter-spacing: 0.1em;
+  }
+
+  /* 支出アイコン */
+  .e-icon{
+    background: #a3b2d1;
+  }
+
+  /* 収入アイコン */
+  .i-icon{
+    background: #d1a3b6;
+  }
+
+  /* お財布画像 */
+  .pic{
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .contents{
+    background: #F3EAE5;
+  }
+  .contents ul{
+    list-style-type: none;
+    text-align: center;
+    margin-bottom: 0;
+    padding-left: 70px;
+  }
+
+  .contents ul li{
+    display: inline-block;
+    width: 170px;
+    padding: 10px 0;
+    vertical-align: middle;
+    color: #584E4A;
+  }
+
+/* 中身テキスト */
+.nakami{
+    text-align: center;
+    margin-top: 20px;
+}
+
+/*========================================
+  フォーム
+========================================*/
+label{
+    display: block;
+  }
+  
+  input[type="text"], input[type="password"], input[type="date"], select{
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+    padding: 10px;
+    width: 100%;
+    height: 60px;
+    border: none;
+    background:#F3EAE5;
+    font-size: 18px;
+  }
+
+  input[type="submit"] {
+    margin: 15px 0;
+    padding: 15px 30px;
+    width: 100%;
+    background: #4D4D4D;
+    font-size: 15px;
+  }
+  
+  /* ログインページのパス保持チェックボックス */
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    background: #f6f5f5;
+    vertical-align: middle;
+  }
+
+  label.err input, label.err select{
+    background: #f7dcd9;
+  }
+
+  .form-container {
+    margin: 0 auto;
+  }
+  .page-1colum .form-container{
+    margin: 50px auto;
+  }
+  
+  .form {
+    margin: 0 auto;
+    padding: 30px;
+    width: 400px;
+    border: 5px solid #584E4A;
+  }
+
+  .form .area-msg{
+    padding: 0 0 15px 0;
+    color: #ab555a;
+    margin-left: 10px;
+  }
+  
+  .form .btn-container {
+    text-align: center;
+  }
+  
+  /* 支出・収入の入力ページのカテゴリ新規登録 */
+  select{
+    margin-bottom: 10px;
+  }
+  .new-category{
+    margin-bottom: 20px;
+    text-align: right;
+  }
+
+  /* マイページの日付 */
+  #main .go{
+    padding: 1px 5px;
+    margin: 0 0 0 5px;
+    vertical-align: middle;
+    background: #d4a5a7;
+    width: auto;  /* width100%の打ち消し */
+  }
+
+  input[type="month"]{
+    height: 20px;
+  }
+
+  .gomi{
+    text-align: right;
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+/*========================================
+  ボタン
+========================================*/
+
+.btn {
+    padding: 15px 20px;
+    text-decoration: none;
+    max-width: 200px;
+    border: 1.5px solid #4D4D4D;
+    color: #FFFEFE;
+    background: #4D4D4D;
+  }
+  
+  .btn:hover {
+    border: 1.5px solid #4D4D4D;
+    background: #4D4D4D;
+    color: #FFFEFE;
+    cursor: pointer;
+  }
+
+/* フォームグループ
+=================================*/
+.form-group{
+  position: relative;
+  overflow: hidden;
+}
+.form-group > input{
+  float: left;
+}
+.form-group > .option{
+  position: relative;  /* 親子ともrelative。両方ともずらし表示がしたい */
+  top: 40px;
+  display: block;
+  float: left;
+  padding-left: 10px;
+}
+
+/* photoフォーム */
+.form .area-drop{
+  margin-bottom: 15px;
+  width: 50%;
+  height: 140px;
+  background: #F3EAE5;
+  color: #ccc;
+  text-align: center;
+  line-height: 150px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.form .input-file{
+  opacity: 0;  /* 透明に */
+  width: 100%;
+  height: 140px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2; /* 必ずz-indexをつけないと登録画像を変更する際にドラッグ＆ドロップできなくなる*/
+}
+
+.form .prev-img{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/*========================================
+  フッター
+========================================*/
+
+footer {
+    padding: 15px;
+    width: 100%;
+    background: #4D4D4D;
+    color: #FFFEFE;
+    text-align: center;
+    font-size: 12px;
+  }
+
+
+/*========================================
+  その他
+========================================*/
+/* メッセージ表示 */
+.msg-slide{
+  position: fixed;
+  top: 0;
+  width:100%;
+  height:60px;
+  background: rgba(243,234,229,0.6);
+  text-align: center;
+  font-size:16px;
+  line-height: 60px;
+
+}
+
