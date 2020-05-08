@@ -36,10 +36,10 @@ if(!empty($_POST)){
         if($stmt1){
             session_destroy();
             debug('$_SESSIONの中身：'.print_r($_SESSION,true));
-            debug('新規登録画面へ遷移するよ〜！');
+            debug('新規登録画面へ遷移します。');
             header("Location:signup.php");
         }else{
-            debug('エラー発生！！');
+            debug('エラー発生');
             $err_msg['common'] = MSG07;
         }
 
