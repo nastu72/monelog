@@ -24,15 +24,10 @@ function debug($str){
 //================================
 // セッション準備・セッション有効期限を延ばす
 //================================
-//セッションファイルの置き場を変更する（/var/tmp/以下に置くと30日は削除されない）
 session_save_path("/var/tmp/");
-//ガーベージコレクションが削除するセッションの有効期限を設定（30日以上経っているものに対してだけ１００分の１の確率で削除）
 ini_set('session.gc_maxlifetime',60*60*24*30);
-//ブラウザを閉じても削除されないようにクッキー自体の有効期限を延ばす
 ini_set('session.cookie_lifetime',60*60*24*30);
-//セッションを使う
 session_start();
-//現在のセッションIDを新しく生成したものと置き換える（なりすましのセキュリティ対策）
 session_regenerate_id();
 
 //================================
@@ -255,12 +250,8 @@ function dbConnect(){
     $user = 'root';
     $password = 'root';
     $options = array(
-      // SQL実行失敗時にはエラーコードのみ設定
       PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
-      // デフォルトフェッチモードを連想配列形式に設定
       PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-      // バッファードクエリを使う(一度に結果セットをすべて取得し、サーバー負荷を軽減)
-      // SELECTで得た結果に対してもrowCountメソッドを使えるようにする
       PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
     );
     // PDOオブジェクト生成（DBへ接続）
@@ -272,7 +263,6 @@ function dbConnect(){
   function queryPost($dbh,$sql,$data){
     //クエリ作成
     $stmt = $dbh->prepare($sql);
-    //プレースホルダに値をセットし、SQL文を実行
     // $dataの実行に失敗した場合
     if(!$stmt->execute($data)){
         debug('クエリに失敗しました。');
@@ -299,7 +289,7 @@ function dbConnect(){
         debug('$stmtの中身：'.print_r($stmt,true));
 
         if($stmt){
-            return $stmt->fetch(PDO::FETCH_ASSOC);  // クエリ結果のデータを１レコード返却
+            return $stmt->fetch(PDO::FETCH_ASSOC);
         }else{
             return false;
         }
@@ -461,11 +451,11 @@ function priceSum($str1,$str2){
 //================================
 function sendMail($from, $to, $subject, $comment){
     if(!empty($to) && !empty($subject) && !empty($comment)){
-        // 文字化けし防止
+        // 文字化け防止
         mb_language("Japanese");
         mb_internal_encoding("UTF-8");
 
-        // メールを送信(trueかfalseで返ってくる)
+        // メールを送信
         $result = mb_send_mail($to, $subject, $comment, "From:".$from);
 
         if($result){
